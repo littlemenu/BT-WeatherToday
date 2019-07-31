@@ -25,7 +25,7 @@ struct City: Codable {
     let rainfallProbability: Int
     
     var temperature: String {
-        return "섭씨 \(self.celsius)도 / 화씨 \(self.celsius * 9/5 + 32)도"
+        return "섭씨 \(self.celsius)도 / 화씨 \(String(format: "%.2f", self.celsius * 9/5 + 32))도"
     }
     
     enum CodingKeys: String, CodingKey {
