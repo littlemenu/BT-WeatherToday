@@ -70,6 +70,7 @@ class CityListVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         } else {
             cell.imageViewWeatherIcon.image = UIImage(named: "snowy")
         }
+        cell.weatherState = city.state
         
         cell.labelCityName.text = city.cityName
         cell.labelTemperature.text = city.temperature
@@ -82,5 +83,22 @@ class CityListVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        
+        guard let nextViewController: WeatherInfoVC = segue.destination as? WeatherInfoVC else {
+            return
+        }
+        
+        guard let cell: CityCustomTableViewCell = sender as? CityCustomTableViewCell else {
+            return
+        }
+        
+        guard let weatherState = cell.weatherState else {
+            return
+        }
+        
+        nextViewController.cityName = cell.labelCityName.text
+        nextViewController.weatherState = weatherState
+        nextViewController.temperature = cell.labelTemperature.text
+        nextViewController.rainfallProbability = cell.labelRainfallProbability.text
     }
 }

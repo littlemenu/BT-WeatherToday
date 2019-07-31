@@ -10,6 +10,8 @@ import UIKit
 
 class CityCustomTableViewCell: UITableViewCell {
 
+    var weatherState: Int?
+    
     @IBOutlet weak var imageViewWeatherIcon: UIImageView!
     @IBOutlet weak var labelCityName: UILabel!
     @IBOutlet weak var labelTemperature: UILabel!
